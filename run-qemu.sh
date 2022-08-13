@@ -39,4 +39,4 @@ test -f images/rootfs.ext2 || {
     echo "images/rootfs.ext2 is missing" 1>&2;
     return 1
 };
-$qemu -M pc -m 1024 -kernel "images/bzImage" -drive file=images/rootfs.ext2,if=virtio,format=raw -append "root=/dev/vda console=ttyS0,115200n8 net.ifnames=0${quiet}" -net nic,model=virtio -net "user${hostfwd}" -nographic -enable-kvm -rtc base=utc -device virtio-rng-pci -watchdog i6300esb
+$qemu -M pc -cpu host -m 1024 -kernel "images/bzImage" -drive file=images/rootfs.ext2,if=virtio,format=raw -append "root=/dev/vda console=ttyS0,115200n8 net.ifnames=0${quiet}" -net nic,model=virtio -net "user${hostfwd}" -nographic -enable-kvm -rtc base=utc -device virtio-rng-pci -watchdog i6300esb
